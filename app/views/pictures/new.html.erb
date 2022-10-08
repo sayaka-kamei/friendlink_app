@@ -1,15 +1,13 @@
 <%= form_with(model: @picture, local: true) do |form| %>
+
   <div class="picture_image">
     <%= form.label :image %>
-    <%= form.text_field :image %>
+    <%= form.file_field :image %>
   </div>
   <div class="picture_content">
     <%= form.label :content %>
     <%= form.text_field :content %>
   </div>
-  <div class="picture_user">
-    <%= form.label :user %>
-    <%= form.text_field :user %>
-  </div>
+  
   <%= form.submit %>
 <% end %>
