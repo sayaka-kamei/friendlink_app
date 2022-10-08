@@ -9,11 +9,15 @@ class PicturesController < ApplicationController
   end
   def create
     @picture = Picture.new(picture_params)
-    if @picture.save
-      redirect_to pictures_path, notice: "投稿を作成しました！"
-    else
+    if params[:back]
       render :new
-    end
+    else
+      if @picture.save
+      redirect_to pictures_path, notice: "投稿を作成しました！"
+      else
+      render :new
+      end
+    end  
   end
 
   def show
@@ -33,6 +37,11 @@ class PicturesController < ApplicationController
   def destroy
     @blog.destroy
     redirect_to pictures_path, notice:"投稿を削除しました！"
+  end
+
+  def confirm
+    @picture = Picture.new(picture_params)
+    render :new if @picture.invalid?
   end
 
   private
